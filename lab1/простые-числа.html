@@ -1,0 +1,156 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 4 — Простые числа</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            color: #111;
+        }
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        input {
+            padding: 8px 12px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            width: 150px;
+        }
+        button {
+            padding: 8px 16px;
+            font-size: 1rem;
+            background: #0366d6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        button:hover {
+            background: #0256b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f6f8fa;
+            border-radius: 6px;
+            border-left: 4px solid #0366d6;
+            word-wrap: break-word;
+            line-height: 1.8;
+        }
+        .result-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #0366d6;
+        }
+        .prime-number {
+            display: inline-block;
+            background: #e1e4e8;
+            padding: 4px 10px;
+            margin: 4px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .error {
+            color: #d73a49;
+        }
+        .example {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #586069;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Задание 4: Простые числа</h1>
+    <p>Натуральное число, большее 1, называется <strong>простым</strong>, если оно делится только на 1 и на само себя.</p>
+    
+    <div>
+        <label>Введите число n (от 2 до 10000):</label><br><br>
+        <input type="number" id="maxNumber" placeholder="например, 50" min="2">
+        <button id="findBtn">Найти простые числа</button>
+    </div>
+
+    <div class="result" id="resultBlock" style="display: none;">
+        <div class="result-title">✨ Простые числа от 2 до <span id="resultN"></span>:</div>
+        <div id="primesList"></div>
+    </div>
+
+    <div class="example">
+        📌 <strong>Примеры:</strong><br>
+        • n = 10 → простые числа: 2, 3, 5, 7<br>
+        • n = 20 → простые числа: 2, 3, 5, 7, 11, 13, 17, 19
+    </div>
+
+    <script>
+        'use strict';
+
+        function isPrime(num) {
+            if (num < 2) return false;
+            for (let i = 2; i < num; i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        function findPrimesUpTo(n) {
+            const primes = [];
+            for (let i = 2; i <= n; i++) {
+                if (isPrime(i)) primes.push(i);
+            }
+            return primes;
+        }
+
+        document.getElementById('findBtn').addEventListener('click', function() {
+            const input = document.getElementById('maxNumber');
+            let n = parseInt(input.value);
+            
+            if (isNaN(n)) {
+                alert('Ошибка: введите число');
+                return;
+            }
+            
+            if (n < 2) {
+                alert('Ошибка: число должно быть больше или равно 2');
+                return;
+            }
+            
+            if (n > 10000) {
+                alert('Ошибка: число не должно превышать 10000');
+                return;
+            }
+            
+            const primes = findPrimesUpTo(n);
+            
+            document.getElementById('resultN').textContent = n;
+            
+            const primesListDiv = document.getElementById('primesList');
+            primesListDiv.innerHTML = '';
+            
+            if (primes.length === 0) {
+                primesListDiv.innerHTML = '<span class="error">Простых чисел в этом диапазоне нет</span>';
+            } else {
+                for (let i = 0; i < primes.length; i++) {
+                    const span = document.createElement('span');
+                    span.className = 'prime-number';
+                    span.textContent = primes[i];
+                    primesListDiv.appendChild(span);
+                }
+            }
+            
+            document.getElementById('resultBlock').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
+```
