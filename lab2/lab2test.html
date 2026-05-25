@@ -11,19 +11,10 @@
 </head>
 <body>
     <div id="mocha"></div>
-
-    <script type="module">
-        import {
-            pow,
-            sumTo,
-            isLeapYear,
-            factorial,
-            fib,
-            compare,
-            sum,
-            addBlackSpot
-        } from './lab2.js';
-
+    
+    <script src="lab2.js"></script>
+    
+    <script>
         describe("pow", function () {
             it("pow(2, 2) => 4", () => assert.strictEqual(pow(2, 2), 4));
             it("pow(2, 0) => 1", () => assert.strictEqual(pow(2, 0), 1));
