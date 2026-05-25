@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №1 — JavaScript</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .lab-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .lab-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .lab-title {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .lab-description {
+            color: #666;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+
+        .tasks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .task {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .task:hover {
+            background: #e9ecef;
+        }
+
+        .task-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .task-desc {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .task-link {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: background 0.3s ease;
+        }
+
+        .task-link:hover {
+            background: #5a67d8;
+        }
+
+        .status {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #48bb78;
+            margin-right: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .lab-title { font-size: 1.4rem; }
+            .tasks { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Лабораторная работа №1</h1>
+        <div class="subtitle">JavaScript · Управляющие конструкции</div>
+
+        <!-- Лабораторная работа №1 -->
+        <div class="lab-card">
+            <h2 class="lab-title">🔬 Задания</h2>
+            <div class="lab-description">
+                <strong>Тема:</strong> Управляющие конструкции в JavaScript (if/else, switch, циклы).<br>
+                <strong>Все задания выполнены с использованием директивы <code>'use strict'</code>.</strong>
+            </div>
+            <div class="tasks">
+                <div class="task">
+                    <div class="task-name">
+                        <span class="status"></span>
+                        Задание 1 · Пенсионный калькулятор
+                    </div>
+                    <div class="task-desc">📊 Расчёт пенсионного статуса по возрасту и полу. Используются условные операторы if/else.</div>
+                    <a href="lab1/пенсионный-калькулятор.html" class="task-link">Открыть →</a>
+                </div>
+
+                <div class="task">
+                    <div class="task-name">
+                        <span class="status"></span>
+                        Задание 2 · Считать ворон
+                    </div>
+                    <div class="task-desc">🐦 Склонение числительных для слова «ворон». Используется switch и if/else.</div>
+                    <a href="lab1/считать-ворон.html" class="task-link">Открыть →</a>
+                </div>
+
+                <div class="task">
+                    <div class="task-name">
+                        <span class="status"></span>
+                        Задание 3 · Ввод числа
+                    </div>
+                    <div class="task-desc">🔢 Цикл while + prompt/confirm. Ввод числа больше 100 или отмена с подтверждением.</div>
+                    <a href="lab1/ввод-числа.html" class="task-link">Открыть →</a>
+                </div>
+
+                <div class="task">
+                    <div class="task-name">
+                        <span class="status"></span>
+                        Задание 4 · Простые числа
+                    </div>
+                    <div class="task-desc">🔍 Алгоритм поиска простых чисел от 2 до n. Вложенные циклы и проверка остатка.</div>
+                    <a href="lab1/простые-числа.html" class="task-link">Открыть →</a>
+                </div>
+
+                <div class="task">
+                    <div class="task-name">
+                        <span class="status"></span>
+                        Задание 5 · Таблица
+                    </div>
+                    <div class="task-desc">📋 Генерация последовательности dog/cat. Вывод в консоль с табуляцией.</div>
+                    <a href="lab1/таблица.html" class="task-link">Открыть →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            🎓 Лабораторная работа №1 · JavaScript · GitHub Pages
+        </div>
+    </div>
+</body>
+</html>
