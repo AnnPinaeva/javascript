@@ -1,15 +1,21 @@
 'use strict';
 
+/**
+ * Возводит число x в степень n
+ * @param {number} x - Основание степени
+ * @param {number} n - Показатель степени (целое число)
+ * @returns {number} Результат возведения в степень
+ */
 function pow(x, n) {
-    if (n === 0) return 1;
-    if (n < 0) return 1 / pow(x, -n);
-    let result = 1;
-    for (let i = 0; i < n; i++) {
-        result *= x;
-    }
-    return result;
+    return Math.pow(x, n);
 }
 
+/**
+ * Вычисляет сумму чисел от 1 до n включительно
+ * Создана с помощью синтаксиса new Function
+ * @param {number} n - Натуральное число
+ * @returns {number} Сумма чисел от 1 до n
+ */
 const sumTo = new Function('n', `
     let sum = 0;
     for (let i = 1; i <= n; i++) {
@@ -18,48 +24,57 @@ const sumTo = new Function('n', `
     return sum;
 `);
 
+/**
+ * Проверяет, является ли год високосным
+ * @param {number} year - Год для проверки
+ * @returns {boolean} true, если год високосный, иначе false
+ */
 function isLeapYear(year) {
     return (year % 400 === 0) || (year % 4 === 0 && year % 100 !== 0);
 }
 
+/**
+ * Вычисляет факториал числа n (n!)
+ * Использует рекурсивный вызов
+ * @param {number} n - Число для вычисления факториала
+ * @returns {bigint} Факториал числа в формате BigInt
+ */
 function factorial(n) {
-    if (n < 0) throw new Error('Факториал определён только для неотрицательных чисел');
-    if (n === 0) return 1n;
+    if (n < 0) return 0n;
+    if (n === 0 || n === 1) return 1n;
     return BigInt(n) * factorial(n - 1);
 }
 
+/**
+ * Возвращает n-е число Фибоначчи
+ * @param {number} n - Порядковый номер числа Фибоначчи
+ * @returns {bigint} n-е число Фибоначчи в формате BigInt
+ */
 function fib(n) {
-    if (n < 0) throw new Error('Число Фибоначчи определено только для неотрицательных индексов');
-    
-    function matrixMultiply(a, b) {
-        return [
-            a[0] * b[0] + a[1] * b[2],
-            a[0] * b[1] + a[1] * b[3],
-            a[2] * b[0] + a[3] * b[2],
-            a[2] * b[1] + a[3] * b[3]
-        ];
-    }
-    
-    function matrixPower(matrix, power) {
-        let result = [1n, 0n, 0n, 1n];
-        let base = matrix;
-        let exp = power;
-        while (exp > 0) {
-            if (exp % 2 === 1) {
-                result = matrixMultiply(result, base);
-            }
-            base = matrixMultiply(base, base);
-            exp = Math.floor(exp / 2);
-        }
-        return result;
-    }
-    
+    if (n < 0) return 0n;
     if (n === 0) return 0n;
-    const startMatrix = [1n, 1n, 1n, 0n];
-    const resultMatrix = matrixPower(startMatrix, n - 1);
-    return resultMatrix[0];
+    if (n === 1) return 1n;
+    
+    let prev = 0n;
+    let curr = 1n;
+    
+    for (let i = 2; i <= n; i++) {
+        let next = prev + curr;
+        prev = curr;
+        curr = next;
+    }
+    
+    return curr;
 }
 
+/**
+ * Создаёт функцию сравнения с заданным значением x
+ * @param {number} x - Базовое значение для сравнения
+ * @returns {Function} Анонимная функция, принимающая y и возвращающая:
+ *                     true, если y > x
+ *                     false, если y < x
+ *                     null, если y === x
+ */
 function compare(x) {
     return function(y) {
         if (y > x) return true;
@@ -68,6 +83,11 @@ function compare(x) {
     };
 }
 
+/**
+ * Вычисляет сумму всех переданных аргументов
+ * @param {...number} args - Числа для суммирования
+ * @returns {number} Сумма всех аргументов
+ */
 function sum(...args) {
     let total = 0;
     for (let i = 0; i < args.length; i++) {
@@ -76,8 +96,13 @@ function sum(...args) {
     return total;
 }
 
+/**
+ * Добавляет к объекту символьное свойство blackSpot = true из глобального реестра
+ * @param {Object} obj - Целевой объект
+ * @returns {Object} Тот же объект с добавленным символьным свойством
+ */
 function addBlackSpot(obj) {
-    const blackSpot = Symbol.for("blackSpot");
-    obj[blackSpot] = true;
+    const blackSpotSymbol = Symbol.for("blackSpot");
+    obj[blackSpotSymbol] = true;
     return obj;
 }
