@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Лабораторные работы по JavaScript</title>
+    <title>Лабораторная работа №1 — JavaScript</title>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             max-width: 900px;
             margin: 0 auto;
             padding: 2rem;
@@ -36,7 +36,7 @@
             padding-left: 1.5rem;
         }
         li {
-            margin: 0.5rem 0;
+            margin: 0.75rem 0;
         }
         a {
             color: #0366d6;
@@ -55,16 +55,34 @@
             padding-left: 0;
         }
         .task-list li {
-            margin: 0.75rem 0;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            background: #f6f8fa;
+            border-radius: 8px;
         }
-        .badge {
+        .task-number {
             display: inline-block;
-            background: #f1f3f5;
-            padding: 0.2rem 0.5rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            margin-left: 0.5rem;
-            color: #555;
+            background: #0366d6;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .task-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #111;
+        }
+        .task-desc {
+            font-size: 0.85rem;
+            color: #586069;
+            margin: 5px 0 0 0;
+        }
+        .task-link {
+            display: inline-block;
+            margin-top: 8px;
         }
         footer {
             margin-top: 3rem;
@@ -72,46 +90,64 @@
             color: #586069;
             text-align: center;
         }
+        code {
+            background: #f1f3f5;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body>
-    <h1>📚 Лабораторные работы по JavaScript</h1>
-    <p>Курс «JavaScript. Управляющие конструкции»</p>
+    <h1>📚 Лабораторная работа №1</h1>
+    <p><strong>Тема:</strong> Управляющие конструкции в JavaScript (<code>if/else</code>, <code>switch</code>, циклы).</p>
+    <p>Все задания выполнены с использованием директивы <code>'use strict'</code>.</p>
 
-    <h2>🔬 Лабораторная работа №1</h2>
-    <p><strong>Тема:</strong> Условные операторы, switch, циклы. Все задания выполнены с <code>'use strict'</code>.</p>
-
-    <h3>📋 Список заданий</h3>
+    <h2>📋 Список заданий</h2>
     <ul class="task-list">
         <li>
-            <strong>Задание 1 · Пенсионный калькулятор</strong>
-            <span class="badge">if/else</span>
-            <br>
-            <a href="lab1/пенсионный-калькулятор.html">📊 Открыть задание →</a>
+            <div>
+                <span class="task-number">Задание 1</span>
+                <span class="task-title">Пенсионный калькулятор</span>
+            </div>
+            <div class="task-desc">📊 Расчёт пенсионного статуса по возрасту и полу. Используются условные операторы <code>if/else</code>.</div>
+            <a href="lab1/пенсионный-калькулятор.html" class="task-link">🔗 Открыть задание →</a>
         </li>
+
         <li>
-            <strong>Задание 2 · Считать ворон</strong>
-            <span class="badge">switch</span>
-            <br>
-            <a href="lab1/считать-ворон.html">🐦 Открыть задание →</a>
+            <div>
+                <span class="task-number">Задание 2</span>
+                <span class="task-title">Считать ворон</span>
+            </div>
+            <div class="task-desc">🐦 Склонение числительных для слова «ворон». Используется <code>switch</code> и <code>if/else</code>.</div>
+            <a href="lab1/считать-ворон.html" class="task-link">🔗 Открыть задание →</a>
         </li>
+
         <li>
-            <strong>Задание 3 · Ввод числа (>100)</strong>
-            <span class="badge">while + prompt/confirm</span>
-            <br>
-            <a href="lab1/ввод-числа.html">🔢 Открыть задание →</a>
+            <div>
+                <span class="task-number">Задание 3</span>
+                <span class="task-title">Ввод числа больше 100</span>
+            </div>
+            <div class="task-desc">🔢 Цикл <code>while</code> + <code>prompt</code>/<code>confirm</code>. Ввод числа > 100 или отмена с подтверждением.</div>
+            <a href="lab1/ввод-числа.html" class="task-link">🔗 Открыть задание →</a>
         </li>
+
         <li>
-            <strong>Задание 4 · Простые числа</strong>
-            <span class="badge">вложенные циклы</span>
-            <br>
-            <a href="lab1/простые-числа.html">🔍 Открыть задание →</a>
+            <div>
+                <span class="task-number">Задание 4</span>
+                <span class="task-title">Простые числа</span>
+            </div>
+            <div class="task-desc">🔍 Алгоритм поиска простых чисел от 2 до n. Вложенные циклы и проверка остатка.</div>
+            <a href="lab1/простые-числа.html" class="task-link">🔗 Открыть задание →</a>
         </li>
+
         <li>
-            <strong>Задание 5 · Таблица (dog/cat)</strong>
-            <span class="badge">генерация + консоль</span>
-            <br>
-            <a href="lab1/таблица.html">📋 Открыть задание →</a>
+            <div>
+                <span class="task-number">Задание 5</span>
+                <span class="task-title">Таблица (собаки / коты)</span>
+            </div>
+            <div class="task-desc">📋 Генерация последовательности <code>dog/cat</code>. Вывод в консоль с табуляцией.</div>
+            <a href="lab1/таблица.html" class="task-link">🔗 Открыть задание →</a>
         </li>
     </ul>
 
@@ -122,8 +158,7 @@
     <a href="https://github.com/AnnPinaeva/javascript">github.com/AnnPinaeva/javascript</a></p>
 
     <footer>
-        🎓 Все лабораторные работы выполнены с использованием чистого JavaScript<br>
-        GitHub Pages · Лабораторная работа №1
+        🎓 Лабораторная работа №1 · JavaScript · GitHub Pages
     </footer>
 </body>
 </html>
