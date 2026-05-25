@@ -1,6 +1,6 @@
 'use strict';
 
-export function pow(x, n) {
+function pow(x, n) {
     if (n === 0) return 1;
     if (n < 0) return 1 / pow(x, -n);
     let result = 1;
@@ -10,7 +10,7 @@ export function pow(x, n) {
     return result;
 }
 
-export const sumTo = new Function('n', `
+const sumTo = new Function('n', `
     let sum = 0;
     for (let i = 1; i <= n; i++) {
         sum += i;
@@ -18,11 +18,11 @@ export const sumTo = new Function('n', `
     return sum;
 `);
 
-export function isLeapYear(year) {
+function isLeapYear(year) {
     return (year % 400 === 0) || (year % 4 === 0 && year % 100 !== 0);
 }
 
-export function factorial(n) {
+function factorial(n) {
     if (n < 0) throw new Error('Факториал определён только для неотрицательных чисел');
     if (n === 0) return 1n;
     return BigInt(n) * factorial(n - 1);
@@ -60,7 +60,7 @@ export function fib(n) {
     return resultMatrix[0];
 }
 
-export function compare(x) {
+function compare(x) {
     return function(y) {
         if (y > x) return true;
         if (y < x) return false;
@@ -68,7 +68,7 @@ export function compare(x) {
     };
 }
 
-export function sum(...args) {
+function sum(...args) {
     let total = 0;
     for (let i = 0; i < args.length; i++) {
         total += args[i];
@@ -76,7 +76,7 @@ export function sum(...args) {
     return total;
 }
 
-export function addBlackSpot(obj) {
+function addBlackSpot(obj) {
     const blackSpot = Symbol.for("blackSpot");
     obj[blackSpot] = true;
     return obj;
