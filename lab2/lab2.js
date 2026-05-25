@@ -28,7 +28,7 @@ function factorial(n) {
     return BigInt(n) * factorial(n - 1);
 }
 
-export function fib(n) {
+function fib(n) {
     if (n < 0) throw new Error('Число Фибоначчи определено только для неотрицательных индексов');
     
     function matrixMultiply(a, b) {
