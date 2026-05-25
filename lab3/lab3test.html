@@ -10,6 +10,8 @@
     <script>let assert = chai.assert;</script>
 </head>
 <body>
+    <div id="mocha"></div>
+
     <script type="module">
         import { fib } from '../lab2/lab2.js';
         import {
@@ -22,7 +24,6 @@
             unique
         } from './lab3.js';
 
-        // Переопределим fibs, чтобы использовать импортированный fib
         function fibs(n) {
             const result = [];
             for (let i = 0; i < n; i++) {
@@ -75,6 +76,5 @@
 
         mocha.run();
     </script>
-    <div id="mocha"></div>
 </body>
 </html>
