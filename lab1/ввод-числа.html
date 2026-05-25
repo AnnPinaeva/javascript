@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 3 — Ввод числа больше 100</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            color: #111;
+        }
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #0366d6;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        a:hover {
+            background: #0256b3;
+        }
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f6f8fa;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #586069;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔢 Задание 3: Ввод числа больше 100</h1>
+    <a href="index.html" id="numberLink">🔗 Получить число</a>
+    
+    <div class="info">
+        📌 <strong>Как работает:</strong><br>
+        • При клике на ссылку откроется окно ввода числа<br>
+        • Нужно ввести число <strong>больше 100</strong><br>
+        • Если число корректное — переход на главную страницу<br>
+        • Если нажать «Отмена» — спросит, перейти всё равно?<br>
+        • Если введено неправильное число — попросит ввести снова
+    </div>
+
+    <script>
+        'use strict';
+
+        const link = document.getElementById('numberLink');
+
+        link.addEventListener('click', function(event) {
+            let userInput;
+            let number;
+
+            // Цикл while для повторного ввода
+            while (true) {
+                userInput = prompt('Введите число больше 100:');
+
+                // Проверка на Cancel (отмена)
+                if (userInput === null) {
+                    const allow = confirm('Вы не ввели число. Перейти на главную страницу всё равно?');
+                    if (!allow) {
+                        event.preventDefault(); // отменяем переход
+                    }
+                    return; // выходим из функции
+                }
+
+                // Преобразуем в число
+                number = Number(userInput);
+
+                // Проверка, что число > 100 и не NaN
+                if (!isNaN(number) && number > 100) {
+                    // Всё правильно — переходим по ссылке
+                    return;
+                }
+
+                // Если число не подходит — показываем сообщение и повторяем цикл
+                alert('Ошибка: нужно ввести число больше 100. Попробуйте снова.');
+            }
+        });
+    </script>
+</body>
+</html>
