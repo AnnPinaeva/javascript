@@ -54,7 +54,7 @@ function factorial(n) {
  * @param {number} n - Номер числа Фибоначчи (целое неотрицательное).
  * @returns {bigint} n-е число Фибоначчи (тип BigInt).
  */
-function fib(n) {
+export function fib(n) {
     if (n < 0) throw new Error('Число Фибоначчи определено только для неотрицательных индексов');
     
     // Вспомогательная функция быстрого возведения матрицы в степень
@@ -68,7 +68,7 @@ function fib(n) {
     }
     
     function matrixPower(matrix, power) {
-        let result = [1n, 0n, 0n, 1n]; // единичная матрица
+        let result = [1n, 0n, 0n, 1n];
         let base = matrix;
         let exp = power;
         while (exp > 0) {
