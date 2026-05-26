@@ -74,6 +74,9 @@ function isEmpty(obj) {
     for (let key in obj) {
         return false;
     }
+    if (Object.getOwnPropertyNames(obj).length > 0) {
+        return false;
+    }
     const symbols = Object.getOwnPropertySymbols(obj);
     return symbols.length === 0;
 }
