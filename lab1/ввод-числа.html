@@ -2,59 +2,71 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Задание 3 — Ввод числа больше 100</title>
+    <title>Ввод числа</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #fff;
+            margin: 20px;
         }
         a {
             display: inline-block;
-            padding: 10px 20px;
-            background: #4CAF50;
-            color: white;
+            font-size: 18px;
+            color: #007bff;
             text-decoration: none;
+            border: 1px solid #007bff;
+            padding: 10px 20px;
             border-radius: 5px;
         }
         a:hover {
-            background: #45a049;
+            background: #007bff;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <h1>Задание 3: Ввод числа больше 100</h1>
-    <a href="https://AnnPinaeva.github.io/javascript/" id="numberLink">Получить число</a>
+    <h1>Ввод числа</h1>
+    <a href="#" id="getNumberLink">Получить число</a>
 
     <script>
         'use strict';
 
-        const link = document.getElementById('numberLink');
+        const link = document.getElementById('getNumberLink');
+        
+        // Абсолютный путь к вашему репозиторию JavaScript на GitHub Pages
+        const targetUrl = 'https://anastasiadotocsgo2.github.io/javascript/';
+
+        function askForNumber() {
+            while (true) {
+                let input = prompt("Введите число, большее 100:");
+                
+                if (input === null) {
+                    return false;
+                }
+                
+                let num = Number(input);
+                
+                if (!isNaN(num) && num > 100) {
+                    return true;
+                }
+            }
+        }
+
+        function redirectToIndex() {
+            window.location.href = targetUrl;
+        }
 
         link.addEventListener('click', function(event) {
-            let userInput;
-            let number;
-
-            while (true) {
-                userInput = prompt('Введите число больше 100:');
-
-                if (userInput === null) {
-                    const allow = confirm('Вы не ввели число. Перейти всё равно?');
-                    if (!allow) {
-                        event.preventDefault();
-                    }
-                    return;
+            event.preventDefault();
+            
+            const success = askForNumber();
+            
+            if (success) {
+                redirectToIndex();
+            } else {
+                const allow = confirm("Вы не ввели число больше 100. Всё равно перейти?");
+                if (allow) {
+                    redirectToIndex();
                 }
-
-                number = Number(userInput);
-
-                if (!isNaN(number) && number > 100) {
-                    return;
-                }
-
-                alert('Ошибка: нужно ввести число больше 100');
             }
         });
     </script>
