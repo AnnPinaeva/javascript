@@ -1,6 +1,7 @@
 'use strict';
 
 import { fib } from '../lab3/lab2_module.js';
+
 /**
  * Возвращает дробную часть числа
  * @param {number} num - Исходное число
@@ -45,6 +46,11 @@ export function truncate(str, maxlength) {
     return str.slice(0, maxlength - 1) + '…';
 }
 
+function ucFirst(str) {
+    if (!str) return str;
+    return str[0].toUpperCase() + str.slice(1);
+}
+
 /**
  * Преобразует строку с дефисами в camelCase
  * @param {string} str - Исходная строка (например, 'var-test-text')
@@ -56,16 +62,6 @@ export function camelize(str) {
         words[i] = ucFirst(words[i]);
     }
     return words.join('');
-}
-
-/**
- * Делает первую букву строки заглавной
- * @param {string} str - Исходная строка
- * @returns {string} Строка с заглавной первой буквой
- */
-function ucFirst(str) {
-    if (!str) return str;
-    return str[0].toUpperCase() + str.slice(1);
 }
 
 /**
@@ -82,9 +78,9 @@ export function fibs(n) {
 }
 
 /**
- * Возвращает новый массив, отсортированный по убыванию, не изменяя исходный
+ * Возвращает новый массив чисел, отсортированный по убыванию, не изменяя исходный
  * @param {number[]} arr - Исходный массив чисел
- * @returns {number[]} Новый массив, отсортированный по убыванию
+ * @returns {number[]} Новый массив чисел, отсортированный по убыванию
  */
 export function arrReverseSorted(arr) {
     return [...arr].sort((a, b) => b - a);
