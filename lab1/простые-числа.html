@@ -2,72 +2,42 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Ввод числа</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        a {
-            display: inline-block;
-            font-size: 18px;
-            color: #007bff;
-            text-decoration: none;
-            border: 1px solid #007bff;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-        a:hover {
-            background: #007bff;
-            color: white;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Простые числа</title>
 </head>
 <body>
-    <h1>Ввод числа</h1>
-    <a href="#" id="getNumberLink">Получить число</a>
+    <form id="primesForm">
+        <label>Введите n: <input type="number" id="n" min="2" required></label>
+        <button type="submit">Найти простые числа</button>
+    </form>
+    <div id="result"></div>
 
     <script>
         'use strict';
 
-        const link = document.getElementById('getNumberLink');
-        
-        // Абсолютный путь к вашему репозиторию JavaScript на GitHub Pages
-        const targetUrl = 'https://anastasiadotocsgo2.github.io/javascript/';
-
-        function askForNumber() {
-            while (true) {
-                let input = prompt("Введите число, большее 100:");
-                
-                if (input === null) {
-                    return false;
-                }
-                
-                let num = Number(input);
-                
-                if (!isNaN(num) && num > 100) {
-                    return true;
-                }
+        function isPrime(num) {
+            if (num < 2) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
             }
+            return true;
         }
 
-        function redirectToIndex() {
-            window.location.href = targetUrl;
-        }
-
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
+        document.getElementById('primesForm').addEventListener('submit', (e) => {
+            e.preventDefault();
             
-            const success = askForNumber();
+            const n = parseInt(document.getElementById('n').value);
+            const primes = [];
             
-            if (success) {
-                redirectToIndex();
-            } else {
-                const allow = confirm("Вы не ввели число больше 100. Всё равно перейти?");
-                if (allow) {
-                    redirectToIndex();
+            for (let i = 2; i <= n; i++) {
+                if (isPrime(i)) {
+                    primes.push(i);
                 }
             }
+            
+            document.getElementById('result').innerHTML = primes.length > 0 
+                ? `Простые числа от 2 до ${n}: ${primes.join(', ')}`
+                : `Нет простых чисел в интервале от 2 до ${n}`;
         });
     </script>
 </body>
