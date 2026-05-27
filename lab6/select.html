@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задание 1 - Select</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        select {
+            padding: 8px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .info {
+            background: #e8f4f8;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Работа с select</h1>
+        <select id="musicSelect">
+            <option value="Rock">Rock</option>
+            <option value="Blues" selected>Blues</option>
+        </select>
+        <div class="info" id="info"></div>
+    </div>
+
+    <script>
+        const select = document.getElementById('musicSelect');
+        const info = document.getElementById('info');
+
+        function showSelected() {
+            const selectedOption = select.options[select.selectedIndex];
+            info.innerHTML = `Выбрано: значение = "${selectedOption.value}", текст = "${selectedOption.text}"`;
+        }
+
+        showSelected();
+
+        const newOption = document.createElement('option');
+        newOption.value = 'Classic';
+        newOption.text = 'Классика';
+        select.appendChild(newOption);
+        newOption.selected = true;
+
+        showSelected();
+    </script>
+</body>
+</html>
