@@ -22,12 +22,6 @@
             margin: 10px 0;
             width: 200px;
         }
-        .info {
-            background: #e8f4f8;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
@@ -37,26 +31,18 @@
             <option value="Rock">Рок</option>
             <option value="Blues" selected>Блюз</option>
         </select>
-        <div class="info" id="info"></div>
     </div>
 
     <script>
         'use strict';
 
         const select = document.getElementById('musicSelect');
-        const info = document.getElementById('info');
-
-        const selectedOption = select.options[select.selectedIndex];
-        info.innerHTML = `Выбрано: значение = "${selectedOption.value}", текст = "${selectedOption.text}"`;
 
         const newOption = document.createElement('option');
         newOption.value = "Classic";
         newOption.text = "Классика";
         select.add(newOption);
         select.value = "Classic";
-
-        const newSelectedOption = select.options[select.selectedIndex];
-        info.innerHTML = `Выбрано: значение = "${newSelectedOption.value}", текст = "${newSelectedOption.text}"`;
     </script>
 </body>
 </html>
