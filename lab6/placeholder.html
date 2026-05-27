@@ -18,7 +18,7 @@
         }
         .input-wrapper {
             position: relative;
-            margin: 20px 0;
+            margin: 30px 0 20px;
         }
         input {
             width: 100%;
@@ -27,6 +27,7 @@
             border: 2px solid #ddd;
             border-radius: 5px;
             transition: all 0.3s;
+            box-sizing: border-box;
         }
         input:focus {
             border-color: #4CAF50;
@@ -38,11 +39,14 @@
         }
         .hint {
             position: absolute;
-            top: -20px;
+            top: -22px;
             left: 5px;
             font-size: 12px;
             color: #4CAF50;
             display: none;
+            background: white;
+            padding: 2px 6px;
+            border-radius: 4px;
         }
         .hint.show {
             display: block;
@@ -51,12 +55,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>💡 Плейсхолдер-подсказка</h1>
+        <h1>Плейсхолдер-подсказка</h1>
         <div class="input-wrapper">
             <input type="text" id="testInput" data-placeholder="Введите ваше имя...">
             <div class="hint" id="hint"></div>
         </div>
-        <p>📌 При фокусе подсказка появляется над полем, при потере фокуса — возвращается в поле, если поле пустое.</p>
+        <p>💡 При фокусе подсказка появляется над полем, при потере фокуса — возвращается в поле, если поле пустое.</p>
     </div>
 
     <script>
