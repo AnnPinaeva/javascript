@@ -16,20 +16,24 @@
             padding: 20px;
             border-radius: 10px;
         }
-        #editableDiv {
-            background: #f9f9f9;
+        .editable-div {
+            width: 100%;
+            min-height: 120px;
             border: 2px dashed #4CAF50;
-            padding: 20px;
+            padding: 15px;
+            margin: 10px 0;
+            background: #f9f9f9;
             border-radius: 8px;
-            min-height: 100px;
             cursor: pointer;
             transition: all 0.3s;
+            box-sizing: border-box;
         }
-        #editableDiv:hover {
+        .editable-div:hover {
             background: #e8f4f8;
         }
         textarea {
             width: 100%;
+            height: 120px;
             padding: 12px;
             font-size: 14px;
             border: 2px solid #4CAF50;
@@ -57,7 +61,7 @@
 <body>
     <div class="container">
         <h1>Редактируемый div</h1>
-        <div id="editableDiv" tabindex="0">
+        <div id="myDiv" class="editable-div" tabindex="0">
             Нажми <kbd>Ctrl+E</kbd> для редактирования. <kbd>Ctrl+S</kbd> сохранить, <kbd>Esc</kbd> отменить.
         </div>
         <div class="info">
@@ -66,55 +70,36 @@
     </div>
 
     <script>
-        const div = document.getElementById('editableDiv');
+        'use strict';
+
+        const div = document.getElementById('myDiv');
         let isEditing = false;
-        let originalText = '';
-
-        function startEdit() {
-            originalText = div.innerHTML;
-            const textarea = document.createElement('textarea');
-            textarea.value = originalText;
-            textarea.id = 'editTextarea';
-            div.innerHTML = '';
-            div.appendChild(textarea);
-            textarea.focus();
-            isEditing = true;
-        }
-
-        function saveEdit() {
-            const textarea = document.getElementById('editTextarea');
-            if (textarea) {
-                div.innerHTML = textarea.value;
-            }
-            isEditing = false;
-        }
-
-        function cancelEdit() {
-            div.innerHTML = originalText;
-            isEditing = false;
-        }
-
-        div.addEventListener('click', function() {
-            div.focus();
-        });
-
+        let originalContent = '';
+        
         document.addEventListener('keydown', function(e) {
             if (e.ctrlKey && e.key === 'e') {
                 e.preventDefault();
+                
                 if (!isEditing) {
-                    startEdit();
+                    originalContent = div.innerHTML;
+                    const textarea = document.createElement('textarea');
+                    textarea.value = div.innerText;
+                    div.innerHTML = '';
+                    div.appendChild(textarea);
+                    textarea.focus();
+                    isEditing = true;
                 }
             }
-            else if (e.ctrlKey && e.key === 's') {
+            else if (e.ctrlKey && e.key === 's' && isEditing) {
                 e.preventDefault();
-                if (isEditing) {
-                    saveEdit();
-                }
+                
+                const textarea = div.querySelector('textarea');
+                div.innerHTML = textarea.value;
+                isEditing = false;
             }
-            else if (e.key === 'Escape') {
-                if (isEditing) {
-                    cancelEdit();
-                }
+            else if (e.key === 'Escape' && isEditing) {
+                div.innerHTML = originalContent;
+                isEditing = false;
             }
         });
     </script>
