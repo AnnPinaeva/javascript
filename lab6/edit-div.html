@@ -16,16 +16,16 @@
             padding: 20px;
             border-radius: 10px;
         }
-        .editable {
+        #editableDiv {
             background: #f9f9f9;
             border: 2px dashed #4CAF50;
-            padding: 15px;
+            padding: 20px;
             border-radius: 8px;
             min-height: 100px;
             cursor: pointer;
             transition: all 0.3s;
         }
-        .editable:hover {
+        #editableDiv:hover {
             background: #e8f4f8;
         }
         textarea {
@@ -36,6 +36,7 @@
             border-radius: 8px;
             font-family: inherit;
             resize: vertical;
+            box-sizing: border-box;
         }
         .info {
             margin-top: 15px;
@@ -55,56 +56,64 @@
 </head>
 <body>
     <div class="container">
-        <h1>✏️ Редактируемый div</h1>
-        <div id="editableDiv" class="editable">
+        <h1>Редактируемый div</h1>
+        <div id="editableDiv" tabindex="0">
             Нажми <kbd>Ctrl+E</kbd> для редактирования. <kbd>Ctrl+S</kbd> сохранить, <kbd>Esc</kbd> отменить.
         </div>
         <div class="info">
-            💡 Попробуй: <kbd>Ctrl+E</kbd> → измени текст → <kbd>Ctrl+S</kbd> или <kbd>Esc</kbd>
+            💡 Кликни на область выше → нажми <kbd>Ctrl+E</kbd> → измени текст → <kbd>Ctrl+S</kbd> или <kbd>Esc</kbd>
         </div>
     </div>
 
     <script>
-        const container = document.getElementById('editableDiv');
-        let textarea = null;
-        let originalContent = '';
+        const div = document.getElementById('editableDiv');
+        let isEditing = false;
+        let originalText = '';
 
-        function enterEditMode() {
-            originalContent = container.innerHTML;
-            textarea = document.createElement('textarea');
-            textarea.value = originalContent;
-            textarea.style.width = '100%';
-            container.innerHTML = '';
-            container.appendChild(textarea);
+        function startEdit() {
+            originalText = div.innerHTML;
+            const textarea = document.createElement('textarea');
+            textarea.value = originalText;
+            textarea.id = 'editTextarea';
+            div.innerHTML = '';
+            div.appendChild(textarea);
             textarea.focus();
+            isEditing = true;
         }
 
-        function saveAndExit() {
+        function saveEdit() {
+            const textarea = document.getElementById('editTextarea');
             if (textarea) {
-                container.innerHTML = textarea.value;
-                textarea = null;
+                div.innerHTML = textarea.value;
             }
+            isEditing = false;
         }
 
         function cancelEdit() {
-            if (textarea) {
-                container.innerHTML = originalContent;
-                textarea = null;
-            }
+            div.innerHTML = originalText;
+            isEditing = false;
         }
 
+        div.addEventListener('click', function() {
+            div.focus();
+        });
+
         document.addEventListener('keydown', function(e) {
-            if (e.target === container || (textarea && e.target === textarea)) {
-                if (e.ctrlKey && e.key === 'e') {
-                    e.preventDefault();
-                    if (!textarea) enterEditMode();
+            if (e.ctrlKey && e.key === 'e') {
+                e.preventDefault();
+                if (!isEditing) {
+                    startEdit();
                 }
-                else if (e.ctrlKey && e.key === 's') {
-                    e.preventDefault();
-                    if (textarea) saveAndExit();
+            }
+            else if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                if (isEditing) {
+                    saveEdit();
                 }
-                else if (e.key === 'Escape') {
-                    if (textarea) cancelEdit();
+            }
+            else if (e.key === 'Escape') {
+                if (isEditing) {
+                    cancelEdit();
                 }
             }
         });
