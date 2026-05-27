@@ -34,30 +34,29 @@
     <div class="container">
         <h1>Работа с select</h1>
         <select id="musicSelect">
-            <option value="Rock">Rock</option>
-            <option value="Blues" selected>Blues</option>
+            <option value="Rock">Рок</option>
+            <option value="Blues" selected>Блюз</option>
         </select>
         <div class="info" id="info"></div>
     </div>
 
     <script>
+        'use strict';
+
         const select = document.getElementById('musicSelect');
         const info = document.getElementById('info');
 
-        function showSelected() {
-            const selectedOption = select.options[select.selectedIndex];
-            info.innerHTML = `Выбрано: значение = "${selectedOption.value}", текст = "${selectedOption.text}"`;
-        }
-
-        showSelected();
+        const selectedOption = select.options[select.selectedIndex];
+        info.innerHTML = `Выбрано: значение = "${selectedOption.value}", текст = "${selectedOption.text}"`;
 
         const newOption = document.createElement('option');
-        newOption.value = 'Classic';
-        newOption.text = 'Классика';
-        select.appendChild(newOption);
-        newOption.selected = true;
+        newOption.value = "Classic";
+        newOption.text = "Классика";
+        select.add(newOption);
+        select.value = "Classic";
 
-        showSelected();
+        const newSelectedOption = select.options[select.selectedIndex];
+        info.innerHTML = `Выбрано: значение = "${newSelectedOption.value}", текст = "${newSelectedOption.text}"`;
     </script>
 </body>
 </html>
