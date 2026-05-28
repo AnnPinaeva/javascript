@@ -63,6 +63,14 @@
             font-size: 32px;
             display: inline-block;
         }
+        .white-piece {
+            color: white;
+            text-shadow: 0 0 2px black;
+        }
+        .black-piece {
+            color: #222;
+            text-shadow: 0 0 1px white;
+        }
     </style>
 </head>
 <body>
@@ -78,6 +86,7 @@
                 };
                 const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
                 const board = document.getElementById('chessboard');
+                
                 let topRow = document.createElement('tr');
                 topRow.appendChild(document.createElement('th'));
                 for (let i = 0; i < 8; i++) {
@@ -88,32 +97,42 @@
                 }
                 topRow.appendChild(document.createElement('th'));
                 board.appendChild(topRow);
+                
                 for (let row = 8; row >= 1; row--) {
                     const tr = document.createElement('tr');
                     const thLeft = document.createElement('th');
                     thLeft.textContent = row;
                     thLeft.className = 'number-col';
                     tr.appendChild(thLeft);
+                    
                     for (let col = 0; col < 8; col++) {
                         const td = document.createElement('td');
                         const letter = letters[col];
                         const cellKey = letter + row;
                         const isDark = (row + col) % 2 === 0;
                         td.className = isDark ? 'dark' : 'light';
+                        
                         if (pieces[cellKey]) {
                             const pieceSpan = document.createElement('span');
                             pieceSpan.textContent = pieces[cellKey];
                             pieceSpan.className = 'piece';
+                            if (row <= 2) {
+                                pieceSpan.classList.add('white-piece');
+                            } else {
+                                pieceSpan.classList.add('black-piece');
+                            }
                             td.appendChild(pieceSpan);
                         }
                         tr.appendChild(td);
                     }
+                    
                     const thRight = document.createElement('th');
                     thRight.textContent = row;
                     thRight.className = 'number-col';
                     tr.appendChild(thRight);
                     board.appendChild(tr);
                 }
+                
                 let bottomRow = document.createElement('tr');
                 bottomRow.appendChild(document.createElement('th'));
                 for (let i = 0; i < 8; i++) {
