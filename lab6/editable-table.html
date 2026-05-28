@@ -59,9 +59,21 @@
     <div class="container">
         <h1>📊 Редактируемая таблица</h1>
         <table id="editableTable">
-            <tr><td>Ячейка 1</td><td>Ячейка 2</td><td>Ячейка 3</td></tr>
-            <tr><td>Ячейка 4</td><td>Ячейка 5</td><td>Ячейка 6</td></tr>
-            <tr><td>Ячейка 7</td><td>Ячейка 8</td><td>Ячейка 9</td></tr>
+            <tr>
+                <td>Ячейка 1</td>
+                <td>Ячейка 2</td>
+                <td>Ячейка 3</td>
+            </tr>
+            <tr>
+                <td>Ячейка 4</td>
+                <td>Ячейка 5</td>
+                <td>Ячейка 6</td>
+            </tr>
+            <tr>
+                <td>Ячейка 7</td>
+                <td>Ячейка 8</td>
+                <td>Ячейка 9</td>
+            </tr>
         </table>
         <div class="info">
             💡 Кликни на любую ячейку → редактируй → OK (сохранить) или Отмена
@@ -72,11 +84,11 @@
         let editingCell = null;
         let textarea = null;
         let controlsDiv = null;
+        let originalContent = '';
 
         function cancelEdit() {
             if (editingCell && textarea && controlsDiv) {
-                editingCell.removeChild(textarea);
-                editingCell.removeChild(controlsDiv);
+                editingCell.innerHTML = originalContent;
                 editingCell.classList.remove('editing-cell');
                 editingCell = null;
             }
@@ -91,10 +103,10 @@
         }
 
         function startEdit(cell) {
-            if (editingCell) cancelEdit();
+            if (editingCell) return;
             
             editingCell = cell;
-            const originalContent = cell.innerHTML;
+            originalContent = cell.innerHTML;
             
             cell.classList.add('editing-cell');
             cell.innerHTML = '';
@@ -128,15 +140,10 @@
 
         const table = document.getElementById('editableTable');
         table.addEventListener('click', function(e) {
-            let target = e.target;
-            while (target && target.tagName !== 'TD') {
-                target = target.parentElement;
-            }
-            if (target && target.tagName === 'TD') {
-                if (!editingCell) {
-                    startEdit(target);
-                }
-            }
+            const cell = e.target.closest('td');
+            if (!cell) return;
+            if (editingCell) return;
+            startEdit(cell);
         });
     </script>
 </body>
