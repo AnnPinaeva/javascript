@@ -59,19 +59,35 @@
             background-color: #f0f0f0;
             border: none;
         }
+        .piece {
+            font-size: 32px;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>♜ Шахматная доска ♞</h1>
-        <table class="chessboard">
-            <tr>
-                <th></th>
-                <th>a</th><th>b</th><th>c</th><th>d</th><th>e</th><th>f</th><th>g</th><th>h</th>
-                <th></th>
-            </tr>
+        <table class="chessboard" id="chessboard">
             <script>
-                const board = document.currentScript.parentElement;
+                const pieces = {
+                    'a8': '♜', 'b8': '♞', 'c8': '♝', 'd8': '♛', 'e8': '♚', 'f8': '♝', 'g8': '♞', 'h8': '♜',
+                    'a7': '♟', 'b7': '♟', 'c7': '♟', 'd7': '♟', 'e7': '♟', 'f7': '♟', 'g7': '♟', 'h7': '♟',
+                    'a1': '♖', 'b1': '♘', 'c1': '♗', 'd1': '♕', 'e1': '♔', 'f1': '♗', 'g1': '♘', 'h1': '♖',
+                    'a2': '♙', 'b2': '♙', 'c2': '♙', 'd2': '♙', 'e2': '♙', 'f2': '♙', 'g2': '♙', 'h2': '♙'
+                };
+                const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+                const board = document.getElementById('chessboard');
+                let topRow = document.createElement('tr');
+                topRow.appendChild(document.createElement('th'));
+                for (let i = 0; i < 8; i++) {
+                    let th = document.createElement('th');
+                    th.textContent = letters[i];
+                    th.className = 'letter-col';
+                    topRow.appendChild(th);
+                }
+                topRow.appendChild(document.createElement('th'));
+                board.appendChild(topRow);
                 for (let row = 8; row >= 1; row--) {
                     const tr = document.createElement('tr');
                     const thLeft = document.createElement('th');
@@ -80,8 +96,16 @@
                     tr.appendChild(thLeft);
                     for (let col = 0; col < 8; col++) {
                         const td = document.createElement('td');
+                        const letter = letters[col];
+                        const cellKey = letter + row;
                         const isDark = (row + col) % 2 === 0;
                         td.className = isDark ? 'dark' : 'light';
+                        if (pieces[cellKey]) {
+                            const pieceSpan = document.createElement('span');
+                            pieceSpan.textContent = pieces[cellKey];
+                            pieceSpan.className = 'piece';
+                            td.appendChild(pieceSpan);
+                        }
                         tr.appendChild(td);
                     }
                     const thRight = document.createElement('th');
@@ -90,16 +114,16 @@
                     tr.appendChild(thRight);
                     board.appendChild(tr);
                 }
-                const footerRow = document.createElement('tr');
-                footerRow.appendChild(document.createElement('th'));
-                for (let col = 0; col < 8; col++) {
-                    const th = document.createElement('th');
-                    th.textContent = String.fromCharCode(97 + col);
+                let bottomRow = document.createElement('tr');
+                bottomRow.appendChild(document.createElement('th'));
+                for (let i = 0; i < 8; i++) {
+                    let th = document.createElement('th');
+                    th.textContent = letters[i];
                     th.className = 'letter-col';
-                    footerRow.appendChild(th);
+                    bottomRow.appendChild(th);
                 }
-                footerRow.appendChild(document.createElement('th'));
-                board.appendChild(footerRow);
+                bottomRow.appendChild(document.createElement('th'));
+                board.appendChild(bottomRow);
             </script>
         </table>
     </div>
